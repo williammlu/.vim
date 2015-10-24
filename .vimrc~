@@ -1,4 +1,46 @@
-set nocompatible
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+" Put your Plugins below VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVvvv
+
+
+
+Plugin 'Valloric/YouCompleteMe'
+
+
+
+
+
+
+
+
+
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
 
 set hidden
 
@@ -21,10 +63,11 @@ set title
 
 filetype plugin indent on
 
+highlight Normal guibg=black guifg=white
 set background=dark
 
 syntax on
-highlight Visual cterm=NONE ctermbg=0 ctermfg=NONE guibg=Grey40
+hi Visual term=reverse cterm=reverse guibg=Grey
 hi Comment guifg=#32CD32
 
 
@@ -58,3 +101,14 @@ endfunction
 
 nnoremap <leader><Space> :call ToggleComment()<cr>
 vnoremap <leader><Space> :call ToggleComment()<cr>
+
+"required for Airline
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_theme='dark'
+set t_Co=256
+
+
+execute pathogen#infect()
