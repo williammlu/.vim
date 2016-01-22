@@ -1,3 +1,4 @@
+colorscheme badwolf
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -6,26 +7,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
-
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 " Put your Plugins below VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVvvv
-
-
-
 Plugin 'Valloric/YouCompleteMe'
-
-
-
-
-
-
-
-
-
-
-
-" All of your Plugins must be added before the following line
+Plugin 'vim-airline/vim-airline'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -62,14 +48,29 @@ set undolevels=100
 set title
 
 filetype plugin indent on
-
 highlight Normal guibg=black guifg=white
+let s:pairs={}
 set background=dark
 
 syntax on
 hi Visual term=reverse cterm=reverse guibg=Grey
 hi Comment guifg=#32CD32
-
+"""""""""""Autocomplete function"""""""""""
+" function! ConditionalPairMap(open, close)
+"   let line = getline('.')
+"   let col = col('.')
+"   if col < col('$') || stridx(line, a:close, col + 1) != -1
+"     return a:open
+"   else
+"     return a:open . a:close . repeat("\<left>", len(a:close))
+"   endif
+" endf
+" inoremap <expr> ( ConditionalPairMap('(', ')')
+" inoremap <expr> { ConditionalPairMap('{', '}')
+" inoremap <expr> [ ConditionalPairMap('[', ']')
+" inoremap <expr> " ConditionalPairMap('"', '"')
+" inoremap <expr> ' ConditionalPairMap("'", "'")
+" 
 
 
 let s:comment_map = {
