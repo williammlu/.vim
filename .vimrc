@@ -2,7 +2,7 @@ colorscheme badwolf
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
+"set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
@@ -43,6 +43,12 @@ set shiftwidth=4
 set ignorecase
 set smartcase
 
+set relativenumber
+set number
+"sets both relative number and actual line number on current line
+
+
+
 set history=1000
 set undolevels=100
 set title
@@ -72,29 +78,51 @@ hi Comment guifg=#32CD32
 " inoremap <expr> ' ConditionalPairMap("'", "'")
 " 
 
+map 9 <Plug>(easymotion-prefix)
+"remaps easymotion to 9 <plug>
 
-let s:comment_map = {
-    \   "c": '// ',
-    \   "cpp": '// ',
-    \   "go": '// ',
-    \   "java": '// ',
-    \   "javascript": '// ',
-    \   "php": '// ',
-    \   "python": '# ',
-    \   "ruby": '# ',
-    \   "vim": '" ',
+
+
+let s:comment_map = { 
+    \   "c": '\/\/',
+    \   "cpp": '\/\/',
+    \   "go": '\/\/',
+    \   "java": '\/\/',
+    \   "javascript": '\/\/',
+    \   "scala": '\/\/',
+    \   "php": '\/\/',
+    \   "python": '#',
+    \   "ruby": '#',
+    \   "sh": '#',
+    \   "desktop": '#',
+    \   "fstab": '#',
+    \   "conf": '#',
+    \   "profile": '#',
+    \   "bashrc": '#',
+    \   "bash_profile": '#',
+    \   "mail": '>',
+    \   "eml": '>',
+    \   "bat": 'REM',
+    \   "ahk": ';',
+    \   "vim": '"',
+    \   "tex": '%',
     \ }
 
 function! ToggleComment()
     if has_key(s:comment_map, &filetype)
         let comment_leader = s:comment_map[&filetype]
-        if getline('.') =~ "^" . comment_leader
+    if getline('.') =~ "^\\s*" . comment_leader . " " 
+        " Uncomment the line
+        execute "silent s/^\\(\\s*\\)" . comment_leader . " /\\1/"
+    else 
+        if getline('.') =~ "^\\s*" . comment_leader
             " Uncomment the line
-            execute "silent s/^" . comment_leader . "//"
+            execute "silent s/^\\(\\s*\\)" . comment_leader . "/\\1/"
         else
             " Comment the line
-            execute "silent s/^/" . comment_leader . "/"
-        endif
+            execute "silent s/^\\(\\s*\\)/\\1" . comment_leader . " /"
+        end
+    end
     else
         echo "No comment leader found for filetype"
     end
@@ -103,6 +131,7 @@ endfunction
 nnoremap <leader><Space> :call ToggleComment()<cr>
 vnoremap <leader><Space> :call ToggleComment()<cr>
 
+
 "required for Airline
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
@@ -110,6 +139,13 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='dark'
 set t_Co=256
+
+
+"highlight word under cursor
+"http://stackoverflow.com/a/25887606
+autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
+:let HlUnderCursor=1
+
 
 
 execute pathogen#infect()
