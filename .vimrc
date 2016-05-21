@@ -40,7 +40,6 @@ set tabstop=4
 set backspace=indent,eol,start
 set autoindent
 set copyindent
-set number
 set shiftwidth=4
 set ignorecase
 set smartcase
