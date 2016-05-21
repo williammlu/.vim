@@ -26,7 +26,9 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-
+highlight Cursor guifg=orange guibg=white
+highlight iCursor guifg=white guibg=steelblue
+set clipboard=unnamed
 
 set hidden
 
@@ -42,10 +44,13 @@ set number
 set shiftwidth=4
 set ignorecase
 set smartcase
+set cursorcolumn
+set cursorline
 
 set relativenumber
 set number
 "sets both relative number and actual line number on current line
+
 
 
 
@@ -54,12 +59,17 @@ set undolevels=100
 set title
 
 filetype plugin indent on
-highlight Normal guibg=black guifg=white
 let s:pairs={}
 set background=dark
 
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 syntax on
-hi Visual term=reverse cterm=reverse guibg=Grey
+hi Visual term=reverse cterm=reverse guibg=white
 hi Comment guifg=#32CD32
 """""""""""Autocomplete function"""""""""""
 " function! ConditionalPairMap(open, close)
