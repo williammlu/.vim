@@ -12,6 +12,8 @@ Plugin 'VundleVim/Vundle.vim'
 " Put your Plugins below VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVvvv
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'wincent/command-t'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -48,10 +50,12 @@ set cursorline
 
 set relativenumber
 set number
-"sets both relative number and actual line number on current line
+" sets both relative number and actual line number on current line
 
 
 
+map 9 <Plug>(easymotion-prefix)
+" easymotion so you press 9 f to search
 
 set history=1000
 set undolevels=100
@@ -86,9 +90,6 @@ hi Comment guifg=#32CD32
 " inoremap <expr> " ConditionalPairMap('"', '"')
 " inoremap <expr> ' ConditionalPairMap("'", "'")
 " 
-
-map 9 <Plug>(easymotion-prefix)
-"remaps easymotion to 9 <plug>
 
 
 

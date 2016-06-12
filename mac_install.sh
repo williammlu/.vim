@@ -4,3 +4,8 @@ export PATH=/usr/local/bin:$PATH
 brew update
 brew install vim && brew install macvim
 brew link macvim
+
+
+make clean
+ruby extconf.rb
+make
