@@ -29,7 +29,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 highlight Cursor guifg=orange guibg=white
-highlight iCursor guifg=white guibg=steelblue
+highlight iCursor guifg=white guibg=red
 set clipboard=unnamed
 
 set hidden
@@ -74,6 +74,7 @@ nnoremap <C-H> <C-W><C-H>
 syntax on
 hi Visual term=reverse cterm=reverse guibg=white
 hi Comment guifg=#32CD32
+highlight MatchParen ctermfg=blue ctermbg=208 "highlights matching parentheses in orange and makes text blue
 """""""""""Autocomplete function"""""""""""
 " function! ConditionalPairMap(open, close)
 "   let line = getline('.')
@@ -154,7 +155,7 @@ set t_Co=256
 "highlight word under cursor
 "http://stackoverflow.com/a/25887606
 autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
-:let HlUnderCursor=1
+let HlUnderCursor=1
 
 
 
