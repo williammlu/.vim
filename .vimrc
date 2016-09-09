@@ -14,6 +14,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'wincent/command-t'
+Plugin 'lervag/vimtex'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -37,7 +38,7 @@ set hidden
 set mouse=a
 nnoremap ; :
 
-set nowrap
+" set nowrap " do not add line wrapping
 set tabstop=4
 set backspace=indent,eol,start
 set autoindent
@@ -92,7 +93,21 @@ highlight MatchParen ctermfg=blue ctermbg=208 "highlights matching parentheses i
 " inoremap <expr> ' ConditionalPairMap("'", "'")
 " 
 
+let g:livepreview_previewer = 'open -a Preview' "For Latex live previewing https://github.com/xuhdev/vim-latex-live-preview
+autocmd BufNewFile,BufRead *.tex LLPStartPreview
 
+
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+	  set pastetoggle=<Esc>[201~
+	    set paste
+	      return "
+	  endfunction"]]]]"
+	  " For pasting without needing to set paste all the time
 
 let s:comment_map = { 
     \   "c": '\/\/',
