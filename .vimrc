@@ -40,6 +40,10 @@ nnoremap ; :
 
 " set nowrap " do not add line wrapping
 set tabstop=4
+filetype plugin indent on
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
 set backspace=indent,eol,start
 set autoindent
 set copyindent
@@ -55,8 +59,8 @@ set number
 
 
 
-map 9 <Plug>(easymotion-prefix)
-" easymotion so you press 9 f to search
+map f <Plug>(easymotion-prefix)
+" easymotion so you press ff to easymotion it!
 
 set history=1000
 set undolevels=100
