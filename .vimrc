@@ -15,6 +15,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'wincent/command-t'
 Plugin 'lervag/vimtex'
+Plugin 'itchyny/vim-cursorword'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -100,6 +101,7 @@ highlight MatchParen ctermfg=blue ctermbg=208 "highlights matching parentheses i
 let g:livepreview_previewer = 'open -a Preview' "For Latex live previewing https://github.com/xuhdev/vim-latex-live-preview
 autocmd BufNewFile,BufRead *.tex LLPStartPreview
 
+set pastetoggle=<F2> " Press F2 to toggle paste
 
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
@@ -107,12 +109,11 @@ let &t_EI .= "\<Esc>[?2004l"
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 function! XTermPasteBegin()
-	  set pastetoggle=<Esc>[201~
-	    set paste
-	      return "
-	  endfunction"]]]]"
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
 	  " For pasting without needing to set paste all the time
-
 let s:comment_map = { 
     \   "c": '\/\/',
     \   "cpp": '\/\/',
@@ -169,12 +170,6 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='dark'
 set t_Co=256
-
-
-"highlight word under cursor
-"http://stackoverflow.com/a/25887606
-autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
-let HlUnderCursor=1
 
 
 

@@ -9,3 +9,8 @@ brew link macvim
 make clean
 ruby extconf.rb
 make
+
+
+cd ~/.vim/bundle/command-t/ruby/command-t
+ruby extconf.rb
+make
