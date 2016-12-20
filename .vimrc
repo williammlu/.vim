@@ -16,6 +16,7 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'wincent/command-t'
 Plugin 'lervag/vimtex'
 Plugin 'itchyny/vim-cursorword'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -83,20 +84,20 @@ hi Comment guifg=#32CD32
 highlight MatchParen ctermfg=blue ctermbg=208 "highlights matching parentheses in orange and makes text blue
 """""""""""Autocomplete function"""""""""""
 " function! ConditionalPairMap(open, close)
-"   let line = getline('.')
-"   let col = col('.')
-"   if col < col('$') || stridx(line, a:close, col + 1) != -1
-"     return a:open
-"   else
-"     return a:open . a:close . repeat("\<left>", len(a:close))
-"   endif
+  " let line = getline('.')
+  " let col = col('.')
+  " if col < col('$') || stridx(line, a:close, col + 1) != -1
+    " return a:open
+  " else
+    " return a:open . a:close . repeat("\<left>", len(a:close))
+  " endif
 " endf
 " inoremap <expr> ( ConditionalPairMap('(', ')')
 " inoremap <expr> { ConditionalPairMap('{', '}')
 " inoremap <expr> [ ConditionalPairMap('[', ']')
 " inoremap <expr> " ConditionalPairMap('"', '"')
 " inoremap <expr> ' ConditionalPairMap("'", "'")
-" 
+
 
 let g:livepreview_previewer = 'open -a Preview' "For Latex live previewing https://github.com/xuhdev/vim-latex-live-preview
 autocmd BufNewFile,BufRead *.tex LLPStartPreview
@@ -137,6 +138,8 @@ let s:comment_map = {
     \   "ahk": ';',
     \   "vim": '"',
     \   "tex": '%',
+    \   "s": '#',
+    \   "matlab": '%',
     \ }
 
 function! ToggleComment()
@@ -163,6 +166,7 @@ nnoremap <leader><Space> :call ToggleComment()<cr>
 vnoremap <leader><Space> :call ToggleComment()<cr>
 
 
+
 "required for Airline
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
@@ -171,6 +175,6 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='dark'
 set t_Co=256
 
-
+set scrolloff=7
 
 execute pathogen#infect()
